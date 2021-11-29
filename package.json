@@ -5,12 +5,19 @@
   "main": "client.js",
   "dependencies": {
     "@google-cloud/bigquery-storage": "^2.7.0",
-    "google-protobuf": "^3.19.1"
+    "google-protobuf": "^3.19.1",
+    "avsc": "^5.4.18",
+    "snappy": "^7.0.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "c8": "^7.0.0",
+    "chai": "^4.2.0",
+    "mocha": "^8.0.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node client.js"
+    "write": "node client.js",
+    "read": "node read.js"
   },
   "repository": {
     "type": "git",
