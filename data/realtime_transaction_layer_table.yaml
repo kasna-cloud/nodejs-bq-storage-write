@@ -1,0 +1,650 @@
+resources:
+  # Datasets
+  - name: realtime_transaction_layer
+    type: bigquery_table.py
+    properties:
+        name: realtime_transaction_layer
+        datasetId: $(ref.tg_datalake_ds.datasetId)
+        description: "transaction_layer for detection and  aggregation v2 reporting"
+        timePartitioning:
+          field: dataflow_year_month_day_hour
+          requirePartitionFilter: true
+          expirationMs: '13140000000'
+          type: HOUR
+        clustering:
+          fields: [root_element_tracking_metadata_organisation_identifier,root_element_tracking_metadata_property_id, root_element_tracking_metadata_campaign_id, root_element_tracking_metadata_partner_id]
+        schema:
+        - name: root_element_event_time 
+          type: TIMESTAMP
+        - name: root_element_row_time 
+          type: TIMESTAMP
+        - name: root_element_user_local_event_time 
+          type: STRING
+        - name: root_element_tracking_metadata_organisation_time_zone 
+          type: STRING
+        - name: root_element_tracking_metadata_organisation_event_time 
+          type: TIMESTAMP
+        - name: dataflow_year_month_day_hour
+          type: TIMESTAMP
+        - name: impression_event_time 
+          type: TIMESTAMP
+        - name: click_event_time 
+          type: TIMESTAMP
+        - name: install_event_time 
+          type: TIMESTAMP
+        - name: root_element_mmp_click_time 
+          type: TIMESTAMP
+        - name: root_element_request_data_google_play_referrer_click_timestamp 
+          type: STRING
+        - name: root_element_request_data_google_play_install_begin_timestamp 
+          type: STRING
+        - name: click_user_local_event_time 
+          type: STRING
+        - name: install_user_local_event_time 
+          type: STRING
+        - name: impression_user_local_event_time 
+          type: STRING
+        - name: root_element_transaction_id 
+          type: STRING
+        - name: root_element_user_profile_deterministic_identity_impression_viewability_id 
+          type: STRING
+        - name: root_element_user_profile_deterministic_identity_session_id 
+          type: STRING
+        - name: event_goal_id 
+          type: STRING
+        - name: install_mmp_transaction_id 
+          type: STRING
+        - name: event_mmp_transaction_id 
+          type: STRING
+        - name: root_element_tracking_metadata_partner_click_id 
+          type: STRING
+        - name: root_element_user_device_device_id_for_advertiser 
+          type: STRING
+        - name: root_element_user_device_idfa 
+          type: STRING
+        - name: root_element_user_device_idfv 
+          type: STRING
+        - name: root_element_user_device_aaid 
+          type: STRING
+        - name: root_element_request_data_global_cookie_id 
+          type: STRING
+        - name: root_element_request_data_deduplication_cookie_id 
+          type: STRING
+        - name: root_element_user_profile_deterministic_identity_property_id_device_id_hash 
+          type: STRING
+        - name: root_element_request_data_att_status 
+          type: STRING
+        - name: root_element_measure_is_limited_ad_tracking_enabled 
+          type: INTEGER
+        - name: root_element_request_data_is_do_not_track_enabled 
+          type: INTEGER
+        - name: root_element_request_data_gdpr_consent 
+          type: STRING
+        - name: root_element_request_data_gdpr_pd 
+          type: STRING
+        - name: root_element_request_data_gdpr 
+          type: STRING
+        - name: root_element_user_device_browser_do_not_track 
+          type: STRING
+        - name: root_element_user_device_browser_do_not_track_not_available 
+          type: INTEGER
+        - name: root_element_tracking_metadata_organisation_group_id 
+          type: STRING
+        - name: root_element_tracking_metadata_organisation_identifier 
+          type: STRING
+        - name: root_element_organisation_metadata_product 
+          type: STRING
+        - name: root_element_tracking_metadata_property_group_id 
+          type: STRING
+        - name: root_element_tracking_metadata_property_id 
+          type: STRING
+        - name: root_element_tracking_metadata_property_name 
+          type: STRING
+        - name: root_element_tracking_metadata_property_type 
+          type: STRING
+        - name: root_element_tracking_metadata_property_detection_mode 
+          type: STRING
+        - name: root_element_tracking_metadata_campaign_id 
+          type: STRING
+        - name: root_element_tracking_metadata_agency_id 
+          type: STRING
+        - name: root_element_tracking_metadata_cost_model 
+          type: STRING
+        - name: root_element_tracking_metadata_app_title 
+          type: STRING
+        - name: root_element_tracking_metadata_app_developer 
+          type: STRING
+        - name: root_element_tracking_metadata_app_category 
+          type: STRING
+        - name: root_element_tracking_metadata_app_id 
+          type: STRING
+        - name: root_element_tracking_metadata_website_url 
+          type: STRING
+        - name: root_element_tracking_metadata_website_name 
+          type: STRING
+        - name: root_element_tracking_metadata_website_industry_category 
+          type: STRING
+        - name: root_element_tracking_metadata_partner_id 
+          type: STRING
+        - name: root_element_tracking_metadata_source_id 
+          type: STRING
+        - name: root_element_tracking_metadata_sub_partner_id 
+          type: STRING
+        - name: root_element_tracking_metadata_line_id 
+          type: STRING
+        - name: root_element_tracking_metadata_site_id 
+          type: STRING
+        - name: root_element_tracking_metadata_keyword 
+          type: STRING
+        - name: root_element_tracking_metadata_placement_id 
+          type: STRING
+        - name: root_element_tracking_metadata_section_id 
+          type: STRING
+        - name: root_element_tracking_metadata_placement_id_derived 
+          type: STRING
+        - name: root_element_tracking_metadata_placement_id_derived_lineage 
+          type: STRING
+        - name: root_element_tracking_metadata_bundle_id 
+          type: STRING
+        - name: root_element_tracking_metadata_creative_set_id 
+          type: STRING
+        - name: root_element_tracking_metadata_creative_type 
+          type: STRING
+        - name: root_element_tracking_metadata_creative_id 
+          type: STRING
+        - name: root_element_tracking_metadata_creative_size 
+          type: STRING
+        - name: root_element_tracking_metadata_ad_id 
+          type: STRING
+        - name: root_element_tracking_metadata_ad_container 
+          type: STRING
+        - name: root_element_tracking_metadata_sub_param_1 
+          type: STRING
+        - name: root_element_tracking_metadata_sub_param_2 
+          type: STRING
+        - name: root_element_tracking_metadata_sub_param_3 
+          type: STRING
+        - name: root_element_tracking_metadata_sub_param_4 
+          type: STRING
+        - name: root_element_tracking_metadata_sub_param_5 
+          type: STRING
+        - name: root_element_tracking_metadata_source_webpage_url 
+          type: STRING
+        - name: root_element_tracking_metadata_source_application_id 
+          type: STRING
+        - name: root_element_tracking_metadata_source_application_version 
+          type: STRING
+        - name: root_element_tracking_metadata_attributed_event_type 
+          type: STRING
+        - name: root_element_tracking_metadata_attribution_method 
+          type: STRING
+        - name: root_element_tracking_metadata_retargeting_conversion_type 
+          type: STRING
+        - name: root_element_mmp_sdk_version 
+          type: STRING
+        - name: root_element_app_version 
+          type: STRING
+        - name: install_mmp_attribution_lookback 
+          type: STRING
+        - name: root_element_request_data_is_primary_attribution 
+          type: INTEGER
+        - name: root_element_request_data_is_retargeting 
+          type: INTEGER
+        - name: root_element_tracking_metadata_retargeting_window 
+          type: STRING
+        - name: root_element_transaction_status_reason 
+          type: STRING
+        - name: root_element_transaction_status_reason_id 
+          type: STRING
+        - name: root_element_transaction_status 
+          type: STRING
+        - name: root_element_event_type 
+          type: STRING
+        - name: root_element_transaction_action 
+          type: STRING
+        - name: root_element_transaction_method 
+          type: STRING
+        - name: root_element_transaction_source 
+          type: STRING
+        - name: root_element_waf_version 
+          type: STRING
+        - name: root_element_transaction_endpoint 
+          type: STRING
+        - name: root_element_transaction_endpoint_version 
+          type: STRING
+        - name: root_element_tracking_metadata_tracking_platform 
+          type: STRING
+        - name: root_element_tracking_metadata_is_js_tag_integrated 
+          type: INTEGER
+        - name: root_element_adjustment_status 
+          type: STRING
+        - name: root_element_invalid_log_mrc_category 
+          type: STRING
+        - name: root_element_invalid_log_iab_anti_fraud_taxonomy 
+          type: STRING
+        - name: root_element_measure_estimated_cpc 
+          type: FLOAT64
+        - name: root_element_measure_is_conversion_success 
+          type: INTEGER
+        - name: root_element_measure_is_conversion_invalid_sivt
+          type: INTEGER
+        - name: root_element_measure_is_conversion_invalid_givt
+          type: INTEGER
+        - name: root_element_measure_is_conversion_filtered
+          type: INTEGER
+        - name: root_element_is_organic 
+          type: INTEGER
+        - name: root_element_user_ip_info_ip_address_v4_int 
+          type: STRING
+        - name: root_element_user_ip_info_ip_address_v4_str 
+          type: STRING
+        - name: root_element_user_ip_info_ip_address_v6 
+          type: STRING
+        - name: root_element_user_ip_info_isp 
+          type: STRING
+        - name: root_element_user_ip_info_isp_organization 
+          type: STRING
+        - name: root_element_user_ip_info_autonomous_system_number 
+          type: STRING
+        - name: root_element_user_ip_info_autonomous_system_organization 
+          type: STRING
+        - name: root_element_user_ip_info_continent_name 
+          type: STRING
+        - name: root_element_user_ip_info_continent_code 
+          type: STRING
+        - name: root_element_user_ip_info_country_name 
+          type: STRING
+        - name: root_element_user_ip_info_country_iso_code 
+          type: STRING
+        - name: root_element_user_ip_info_state_name 
+          type: STRING
+        - name: root_element_user_ip_info_city_name 
+          type: STRING
+        - name: root_element_user_ip_info_connection_type 
+          type: STRING
+        - name: root_element_user_ip_info_is_wifi 
+          type: INTEGER
+        - name: root_element_user_ip_info_is_residential_proxy 
+          type: INTEGER
+        - name: root_element_user_ip_info_is_anonymous 
+          type: INTEGER
+        - name: root_element_user_ip_info_is_anonymous_vpn 
+          type: INTEGER
+        - name: root_element_user_ip_info_is_hosting_provider 
+          type: INTEGER
+        - name: root_element_user_ip_info_is_public_proxy 
+          type: INTEGER
+        - name: root_element_user_ip_info_is_tor_exit_node 
+          type: INTEGER
+        - name: root_element_user_ip_info_location_lat 
+          type: FLOAT64
+        - name: root_element_user_ip_info_location_lon 
+          type: FLOAT64
+        - name: root_element_user_device_brand 
+          type: STRING
+        - name: root_element_user_device_model 
+          type: STRING
+        - name: root_element_user_device_platform 
+          type: STRING
+        - name: root_element_user_device_platform_version 
+          type: STRING
+        - name: root_element_user_device_browser 
+          type: STRING
+        - name: root_element_user_device_browser_version 
+          type: STRING
+        - name: root_element_user_device_browser_language 
+          type: STRING
+        - name: root_element_user_device_device_type 
+          type: STRING
+        - name: root_element_user_device_browser_adblock 
+          type: INTEGER
+        - name: root_element_user_device_browser_has_lied_languages 
+          type: INTEGER
+        - name: root_element_user_device_browser_has_lied_resolution 
+          type: INTEGER
+        - name: root_element_user_device_browser_has_lied_os 
+          type: INTEGER
+        - name: root_element_user_device_browser_has_lied_browser 
+          type: INTEGER
+        - name: root_element_user_device_browser_fingerprint 
+          type: STRING
+        - name: root_element_user_device_browser_is_headless 
+          type: INTEGER
+        - name: root_element_user_device_browser_language_highest_quality_value 
+          type: STRING
+        - name: root_element_request_data_http_x_forwarded_for 
+          type: STRING
+        - name: root_element_request_data_http_user_agent 
+          type: STRING
+        - name: root_element_request_data_http_x_client_ip 
+          type: STRING
+        - name: root_element_request_data_is_proxy 
+          type: INTEGER
+        - name: root_element_request_data_http_referrer_domain_enrichment_threat_type 
+          type: STRING
+        - name: root_element_request_data_http_referrer_domain_enrichment_source 
+          type: STRING
+        - name: root_element_request_data_http_referrer_domain_enrichment_name 
+          type: STRING
+        - name: root_element_request_data_http_referrer_domain_enrichment_medium 
+          type: STRING
+        - name: root_element_request_data_http_referrer_url 
+          type: STRING
+        - name: root_element_request_data_http_referrer_domain 
+          type: STRING
+        - name: root_element_request_data_http_referrer_domain_enrichment_meta_source 
+          type: STRING
+        - name: event_event_label 
+          type: STRING
+        - name: event_event_revenue_usd 
+          type: FLOAT64
+        - name: event_event_param 
+          type: STRING
+        - name: event_event_name 
+          type: STRING
+        - name: root_element_user_profile_deterministic_identity_property_id_session_id_hash
+          type: STRING
+        - name: click_user_device_idfa
+          type: STRING
+        - name: install_user_device_idfa
+          type: STRING
+        - name: impression_user_device_idfa
+          type: STRING
+        - name: event_user_device_idfa
+          type: STRING
+        - name: click_user_device_aaid
+          type: STRING
+        - name: install_user_device_aaid
+          type: STRING
+        - name: impression_user_device_aaid
+          type: STRING
+        - name: event_user_device_aaid
+          type: STRING
+        - name: click_user_device_idfv
+          type: STRING
+        - name: install_user_device_idfv
+          type: STRING
+        - name: impression_user_device_idfv
+          type: STRING
+        - name: event_user_device_idfv
+          type: STRING
+        - name: root_element_request_data_client_id
+          type: STRING          
+        - name: root_element_tracking_metadata_site_id_raw
+          type: STRING
+        - name: install_mmp_attribution_touch_type
+          type: STRING
+        - name: root_element_process_time_df_transaction_adjustment
+          type: STRING
+        - name: root_element_adjustment_process_time
+          type: TIMESTAMP
+        - name: root_element_adjustment_source
+          type: STRING
+        - name: root_element_organisation_metadata_is_plan_quota_status_exceeded
+          type: INTEGER
+        - name: root_element_multi_rule_combination_reason
+          type: STRING
+        - name: root_element_invalid_log_invalid_reason
+          type: STRING
+        - name: root_element_invalid_log_invalid_reason_id
+          type: STRING
+        - name: root_element_invalid_log_invalid_rule_id
+          type: STRING
+        - name: root_element_invalid_log_invalid_rule_set
+          type: STRING
+        - name: root_element_invalid_log_invalid_rule_condition
+          type: STRING
+        - name: root_element_invalid_log_invalid_rule_value
+          type: STRING
+        - name: root_element_invalid_log_invalid_block_condition
+          type: STRING
+        - name: root_element_invalid_log_invalid_block_value
+          type: STRING
+        - name: root_element_invalid_log_rule_id
+          type: STRING
+        - name: root_element_invalid_log_rule_generated_at
+          type: STRING
+        - name: root_element_invalid_log_monitor_status
+          type: STRING
+        - name: root_element_invalid_log_monitor_metadata
+          type: STRING
+        - name: root_element_whitelist_whitelisted_key
+          type: STRING
+        - name: root_element_whitelist_whitelisted_value
+          type: STRING
+        - name: root_element_whitelist_whitelist_rate_limit
+          type: STRING
+        - name: root_element_whitelist_whitelist_mode
+          type: STRING
+        - name: root_element_whitelist_whitelist_rule_id
+          type: STRING
+        - name: impression_user_ip_info_location_lat
+          type: FLOAT64
+        - name: impression_user_ip_info_location_lon
+          type: FLOAT64
+        - name: install_user_ip_info_location_lat
+          type: FLOAT64
+        - name: install_user_ip_info_location_lon
+          type: FLOAT64
+        - name: click_user_ip_info_location_lat
+          type: FLOAT64
+        - name: click_user_ip_info_location_lon
+          type: FLOAT64
+        - name: event_user_ip_info_location_lat
+          type: FLOAT64
+        - name: event_user_ip_info_location_lon
+          type: FLOAT64
+        - name: install_user_ip_info_ip_address_v4_str
+          type: STRING
+        - name: install_user_ip_info_ip_address_v6
+          type: STRING
+        - name: click_user_ip_info_ip_address_v4_str
+          type: STRING
+        - name: click_user_ip_info_ip_address_v6
+          type: STRING
+        - name: impression_user_ip_info_ip_address_v4_str
+          type: STRING
+        - name: impression_user_ip_info_ip_address_v6
+          type: STRING
+        - name: event_user_ip_info_ip_address_v4_str
+          type: STRING
+        - name: event_user_ip_info_ip_address_v6
+          type: STRING
+        - name: root_element_user_device_user_agent
+          type: STRING
+        - name: click_user_device_brand
+          type: STRING
+        - name: click_user_device_model
+          type: STRING
+        - name: click_user_device_platform
+          type: STRING
+        - name: click_user_device_platform_version
+          type: STRING
+        - name: install_user_device_brand
+          type: STRING
+        - name: install_user_device_model
+          type: STRING
+        - name: install_user_device_platform
+          type: STRING
+        - name: install_user_device_platform_version
+          type: STRING
+        - name: root_element_request_data_http_method
+          type: STRING
+        - name: root_element_request_data_x_requested_with
+          type: STRING
+        - name: event_event_revenue_currency
+          type: STRING
+        - name: event_event_revenue
+          type: FLOAT64
+        - name: adjust_activity_kind
+          type: STRING
+        - name: click_user_ip_info_is_anonymous
+          type: INTEGER
+        - name: click_request_data_global_cookie_id
+          type: STRING
+        - name: click_request_data_deduplication_cookie_id
+          type: STRING
+        - name: click_request_data_http_referrer_domain
+          type: STRING
+        - name: click_user_device_user_agent
+          type: STRING
+        - name: click_invalid_log_rule_id
+          type: STRING
+        - name: click_invalid_log_invalid_reason
+          type: STRING
+        - name: install_user_device_user_agent
+          type: STRING
+        - name: root_element_transaction_status_reason_derived
+          type: STRING
+        - name: root_element_request_data_destination_url
+          type: STRING
+        - name: root_element_request_data_http_x_forwarded_for_proxy_ip_info_http_x_forwarded_for_proxy_ip_info_ordinal_last
+          type: STRING
+        - name: root_element_user_device_age_platform_version_release_date
+          type: STRING
+        - name: root_element_user_device_age_platform_version_age_in_month
+          type: INT64
+        - name: root_element_user_device_age_browser_version_release_date
+          type: STRING
+        - name: root_element_user_device_age_browser_version_age_in_month
+          type: INT64
+        - name: root_element_user_device_age_model_release_date
+          type: STRING
+        - name: root_element_user_device_age_model_age_in_month
+          type: INT64
+        - name: root_element_measure_success_cost_usd
+          type: FLOAT64
+        - name: root_element_measure_invalid_cost_usd
+          type: FLOAT64
+        - name: root_element_measure_filtered_cost_usd
+          type: FLOAT64
+        - name: root_element_measure_is_exclusion
+          type: INT64
+        - name: is_viewable_impression
+          type: INT64
+        - name: is_begin_to_render_impression
+          type: INT64
+        - name: is_measurable_impression
+          type: INT64
+        - name: created_by
+          type: STRING
+        - name: created_at
+          type: TIMESTAMP
+        - name: install_mmp_attribution_method
+          type: STRING
+        - name: click_transaction_id
+          type: STRING
+        - name: install_mmp_sdk_version
+          type: STRING
+        - name: install_app_version
+          type: STRING
+        - name: install_transaction_id
+          type: STRING
+        - name: impression_transaction_id
+          type: STRING
+        - name: event_transaction_id
+          type: STRING
+        - name: install_user_profile_deterministic_identity_property_id_session_id_hash
+          type: STRING
+        - name: event_event_time
+          type: TIMESTAMP
+        - name: root_element_user_ip_info_is_in_european_union
+          type: INTEGER
+        - name: click_request_data_destination_url
+          type: STRING
+        - name: event_request_data_global_cookie_id
+          type: STRING
+        - name: event_request_data_deduplicate_cookie_id
+          type: STRING
+        - name: event_request_data_destination_url
+          type: STRING
+        - name: click_request_data_http_referrer_domain_enrichment_threat_type
+          type: STRING
+        - name: click_request_data_http_referrer_domain_enrichment_source
+          type: STRING
+        - name: click_request_data_http_referrer_domain_enrichment_name
+          type: STRING
+        - name: click_request_data_http_referrer_domain_enrichment_medium
+          type: STRING
+        - name: click_request_data_http_referrer_url
+          type: STRING
+        - name: event_request_data_http_referrer_domain
+          type: STRING
+        - name: event_request_data_http_referrer_domain_enrichment_threat_type
+          type: STRING
+        - name: event_request_data_http_referrer_domain_enrichment_source
+          type: STRING
+        - name: event_request_data_http_referrer_domain_enrichment_name
+          type: STRING
+        - name: event_request_data_http_referrer_domain_enrichment_medium
+          type: STRING
+        - name: event_request_data_http_referrer_url
+          type: STRING
+        - name: ext_table_datetime
+          type: STRING
+        - name: root_element_http_x_forwarded_for_proxy_ip_info_ordinal_last_ip_address
+          type: STRING
+        - name: root_element_http_x_forwarded_for_proxy_ip_info_ordinal_last_isp
+          type: STRING
+        - name: root_element_http_x_forwarded_for_proxy_ip_info_ordinal_last_autonomous_system_number
+          type: STRING
+        - name: root_element_http_x_forwarded_for_proxy_ip_info_ordinal_last_is_anonymous
+          type: INTEGER
+        - name: root_element_http_x_forwarded_for_proxy_ip_info_ordinal_last_is_anonymous_vpn
+          type: INTEGER
+        - name: root_element_http_x_forwarded_for_proxy_ip_info_ordinal_last_is_hosting_provider
+          type: INTEGER
+        - name: root_element_http_x_forwarded_for_proxy_ip_info_ordinal_last_is_public_proxy
+          type: INTEGER
+        - name: root_element_http_x_forwarded_for_proxy_ip_info_ordinal_last_is_tor_exit_node
+          type: INTEGER
+        - name: root_element_http_x_forwarded_for_proxy_ip_info_ordinal_last_is_residential_proxy
+          type: INTEGER
+        - name: root_element_http_x_forwarded_for_proxy_ip_info_ordinal_last_continent_code
+          type: STRING
+        - name: root_element_http_x_forwarded_for_proxy_ip_info_ordinal_last_country_iso_code
+          type: STRING
+        - name: root_element_http_x_forwarded_for_proxy_ip_info_ordinal_last_state_name
+          type: STRING
+        - name: root_element_http_x_forwarded_for_proxy_ip_info_ordinal_last_is_in_european_union
+          type: INTEGER
+        - name: root_element_http_x_forwarded_for_proxy_ip_info_ordinal_last_connection_type
+          type: STRING
+        - name: root_element_http_x_forwarded_for_proxy_ip_info_ordinal_last_is_wifi
+          type: INTEGER
+        - name: journey_http_x_forwarded_for_proxy_ip_info_ordinal_last_ip_address
+          type: STRING
+        - name: journey_http_x_forwarded_for_proxy_ip_info_ordinal_last_isp
+          type: STRING
+        - name: journey_http_x_forwarded_for_proxy_ip_info_ordinal_last_autonomous_system_number
+          type: STRING
+        - name: journey_http_x_forwarded_for_proxy_ip_info_ordinal_last_is_anonymous
+          type: INTEGER
+        - name: journey_http_x_forwarded_for_proxy_ip_info_ordinal_last_is_anonymous_vpn
+          type: INTEGER
+        - name: journey_http_x_forwarded_for_proxy_ip_info_ordinal_last_is_hosting_provider
+          type: INTEGER
+        - name: journey_http_x_forwarded_for_proxy_ip_info_ordinal_last_is_public_proxy
+          type: INTEGER
+        - name: journey_http_x_forwarded_for_proxy_ip_info_ordinal_last_is_tor_exit_node
+          type: INTEGER
+        - name: journey_http_x_forwarded_for_proxy_ip_info_ordinal_last_is_residential_proxy
+          type: INTEGER
+        - name: journey_http_x_forwarded_for_proxy_ip_info_ordinal_last_continent_code
+          type: STRING
+        - name: journey_http_x_forwarded_for_proxy_ip_info_ordinal_last_country_iso_code
+          type: STRING
+        - name: journey_http_x_forwarded_for_proxy_ip_info_ordinal_last_state_name
+          type: STRING
+        - name: journey_http_x_forwarded_for_proxy_ip_info_ordinal_last_is_in_european_union
+          type: INTEGER
+        - name: journey_http_x_forwarded_for_proxy_ip_info_ordinal_last_connection_type
+          type: STRING
+        - name: journey_http_x_forwarded_for_proxy_ip_info_ordinal_last_is_wifi
+          type: INTEGER
+        - name: root_element_measure_is_conversion
+          type: INT64
+        - name: click_request_data_is_proxy 
+          type: INTEGER
+        - name: root_element_measure_is_new_device_install 
+          type: INTEGER

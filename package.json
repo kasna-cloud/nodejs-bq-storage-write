@@ -4,9 +4,11 @@
   "description": "NodeJS BigQuery Storage Write Testing Scripts",
   "main": "client.js",
   "dependencies": {
+    "@google-cloud/bigquery": "^5.9.2",
     "@google-cloud/bigquery-storage": "^2.7.0",
-    "google-protobuf": "^3.19.1",
     "avsc": "^5.4.18",
+    "google-protobuf": "^3.19.1",
+    "js-yaml": "^4.1.0",
     "snappy": "^7.0.0"
   },
   "devDependencies": {
