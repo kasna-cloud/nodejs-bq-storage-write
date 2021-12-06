@@ -4,8 +4,8 @@ const { BigQuery } = require('@google-cloud/bigquery');
 const bigquery = new BigQuery();
 
 const yamlSource = './data/realtime_transaction_layer_table.yaml';
-const datasetId = 'samples';
-const tableId = 'trafficGuard';
+const datasetId = 'samples_au';
+const tableId = 'traffic_guard';
 
 function getSchemasFromYaml() {
   // Get document, or throw exception on error

@@ -8,7 +8,7 @@ const mode = require('@google-cloud/bigquery-storage').protos.google.cloud
 const storageClient = new BigQueryWriteClient();
 
 const project = 'node-bq-storage';
-const dataset = 'samples';
+const dataset = 'samples_au';
 const parent = `projects/${project}/datasets/${dataset}/tables/sample`;
 var writeStream = { type: mode.PENDING };
 
