@@ -1,0 +1,36 @@
+{
+  "name": "nodejs-bq-storage-write",
+  "version": "1.0.0",
+  "description": "NodeJS BigQuery Storage Write Testing Scripts",
+  "main": "client.js",
+  "dependencies": {
+    "@google-cloud/bigquery": "^5.9.2",
+    "@google-cloud/bigquery-storage": "^2.7.0",
+    "avsc": "^5.4.18",
+    "faker": "^5.5.3",
+    "google-protobuf": "^3.19.1",
+    "js-yaml": "^4.1.0",
+    "snappy": "^7.0.0"
+  },
+  "devDependencies": {
+    "c8": "^7.0.0",
+    "chai": "^4.2.0",
+    "mocha": "^8.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "write": "node client.js",
+    "read": "node read.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.mantelgroup.com.au/kasna/customers/trafficguard/nodejs-bq-storage-write.git"
+  },
+  "keywords": [
+    "nodejs",
+    "bigQuery",
+    "gRPC",
+    "GCP"
+  ],
+  "license": "ISC"
+}

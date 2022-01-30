@@ -1,11 +1,25 @@
-NodeJS Client for BigQuery Storage API
-=====
+# NodeJS Client for BigQuery Storage API
+
+# How to start
+
+Write Data
+
+```
+npm run write
+```
+
+Read Existing Data
+
+```
+npm run read
+```
 
 # Example 1
+
 https://stackoverflow.com/questions/69793756/write-rows-to-bigquery-via-nodejs-bigquery-storage-write-api
 
-
 # Example 2
+
 With a static-ish schema, the "raw" API should be feasible.
 
 You'll need to create a proto2 schema and compile it to Node.js, similar to what is done in the Python sample(s): https://github.com/googleapis/python-bigquery-storage/blob/main/samples/snippets/sample_data.proto Be mindful of the restrictions documented here: https://cloud.google.com/bigquery/docs/write-api#use_the_grpc_api_directly importantly, "The protocol buffer message cannot use a package specifier, and all nested or enumeration types must be defined within the top-level root message. References to external messages are not allowed"
